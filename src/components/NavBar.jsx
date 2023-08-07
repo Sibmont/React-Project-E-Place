@@ -1,7 +1,9 @@
 
+import { NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link, NavLink } from 'react-router-dom';
 import CartWidget from './CartWidget';
 
 const NavBar = () => {
@@ -10,16 +12,33 @@ const NavBar = () => {
     <>
     <Navbar bg="dark" data-bs-theme="dark" collapseOnSelect expand="lg" >
         <Container>
-          <Navbar.Brand href="#home">E-Place</Navbar.Brand>
+          <Link to={"/"} className='route-link'>
+          <Navbar.Brand>E-Place</Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto" variant='underline'>
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-          </Navbar.Collapse>
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="me-auto" variant='underline'>
+                <Nav.Link>Home</Nav.Link>
+                <NavDropdown
+                id="nav-dropdown-dark-example"
+                title="Categories"
+                menuVariant="dark"
+                >
+                <NavDropdown.Item as={NavLink} to={`/category/Adventure`}>
+                  Adventure
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to={`/category/RPG`}>
+                  RPG
+                </NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to={`/category/Action`}>
+                  Action
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            </Navbar.Collapse>
+          <Link to={"/cart"} className='route-link'>
           <CartWidget/>
+          </Link>
         </Container>
       </Navbar>
     </>
