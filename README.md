@@ -11,6 +11,13 @@ Navbar básico en React utilizando la librería de React Bootstrap.
 + Props
 + Componentes
 + Librerías
++ Hooks
++ React-Router-DOM
++ Fetch API
++ Async
+
+GIF de la Segunda Pre-Entrega:
+![Entrega GIF](ReactGIF.gif)
 
 ---
 **Curso:** React en Coderhouse
