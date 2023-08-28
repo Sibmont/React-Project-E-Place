@@ -1,11 +1,10 @@
 # E-Place React
-# Primera Entrega React De Coderhouse
+# Entrega Final React De Coderhouse
 Repo para las entregas del curso!
 
 ## Descripción
 
 E-Commerce a base de React
-Navbar básico en React utilizando la librería de React Bootstrap.
 
 ## Se utilizan:
 + Props
@@ -15,6 +14,10 @@ Navbar básico en React utilizando la librería de React Bootstrap.
 + React-Router-DOM
 + Fetch API
 + Async
++ Firebase
++ Context
++ Rendering Condicional
++ Consumo de APIs
 
 GIF de la Segunda Pre-Entrega:
 ![Entrega GIF](ReactGIF.gif)
