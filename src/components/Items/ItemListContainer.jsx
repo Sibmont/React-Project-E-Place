@@ -1,41 +1,35 @@
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import data from "../../assets/products.json";
+import Home from "../Home";
+import Loader from "../Loader";
 import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const  {category}= useParams()
   
   const [products, setProducts] = useState([])
-
-  const fetchData = async () => {
-    try {
-      // Usando import por el momento con un JSON local. Abajo esta el ejemplo de un fetch a un url
-      const response = await fetch("../products.json")
-      const data = await response.json()
-      return data
-    }
-    catch (error) {
-      console.log(`Error found:${error}`)
-      return []
-    }
-  }
-
-  const getData = async () => {
-    const products = await fetchData()
-    setProducts(products)
-  }
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // fetchData().then((data) => setProducts(data))
-    getData()
-  },[])
+
+    const db = getFirestore()
+
+    const itemsCollection = collection(db, 'games')
+    getDocs(itemsCollection).then((snapshot) => {
+      const docs = snapshot.docs.map((doc) => ({id:doc.id,...doc.data()}))
+        setProducts(docs)
+        setLoading(false)
+    })
+
+},[])
 
   const filteredData = products.filter((product) => product.category === category)
     
-  return (
+  return ( 
     <div>
-        <ItemList products = {filteredData.length > 0 ? filteredData : products}/>
+        {loading ? <Loader /> : window.location.pathname != '/' ? <ItemList products = {filteredData.length > 0 ? filteredData : products}/> : null}
+        {products.length > 0 && window.location.pathname === '/' ? <Home products={products} /> : null}
     </div>
   )
 }

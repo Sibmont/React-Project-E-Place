@@ -1,15 +1,15 @@
-import Col from 'react-bootstrap/Col';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-// import image from "../../assets/images/breathofthewild.jpg";
 import Item from "./Item";
 
 const ItemList = ({products}) => {
+
+
   return (
+
     <>
       <Container>
-        <div>
-          <Row className="g-5 mt-2">  
+        <div className='card-container'>
           {products.map((product) => {
             return (
               <Item
@@ -23,11 +23,10 @@ const ItemList = ({products}) => {
               />
             )
           })}
-          </Row>
         </div>
       </Container>
     </>
   )
 }
 
-export default ItemList
+export default React.memo(ItemList)
